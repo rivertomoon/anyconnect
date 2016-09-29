@@ -1,0 +1,12 @@
+stateMachine.lo: stateMachine.c /usr/include/stdc-predef.h \
+ ../include/stateMachine.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdbool.h
+
+/usr/include/stdc-predef.h:
+
+../include/stateMachine.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdbool.h:

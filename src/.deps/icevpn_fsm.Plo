@@ -1,0 +1,578 @@
+icevpn_fsm.lo: icevpn_fsm.c /usr/include/stdc-predef.h \
+ /usr/local/include/pjlib.h /usr/local/include/pj/activesock.h \
+ /usr/local/include/pj/ioqueue.h /usr/local/include/pj/types.h \
+ /usr/local/include/pj/config.h /usr/local/include/pj/compat/cc_gcc.h \
+ /usr/local/include/pj/compat/os_linux.h \
+ /usr/local/include/pj/compat/size_t.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h \
+ /usr/local/include/pj/config_site.h /usr/local/include/pj/sock.h \
+ /usr/local/include/pj/addr_resolv.h /usr/local/include/pj/array.h \
+ /usr/local/include/pj/assert.h /usr/local/include/pj/compat/assert.h \
+ /usr/include/assert.h /usr/include/features.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/local/include/pj/ctype.h /usr/local/include/pj/compat/ctype.h \
+ /usr/include/ctype.h /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h /usr/include/xlocale.h \
+ /usr/local/include/pj/errno.h /usr/local/include/pj/compat/errno.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h \
+ /usr/local/include/pj/except.h /usr/local/include/pj/compat/setjmp.h \
+ /usr/include/setjmp.h /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/bits/sigset.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp2.h /usr/local/include/pj/log.h \
+ /usr/local/include/pj/fifobuf.h /usr/local/include/pj/file_access.h \
+ /usr/local/include/pj/file_io.h /usr/local/include/pj/guid.h \
+ /usr/local/include/pj/hash.h /usr/local/include/pj/ip_helper.h \
+ /usr/local/include/pj/list.h /usr/local/include/pj/lock.h \
+ /usr/local/include/pj/math.h /usr/local/include/pj/string.h \
+ /usr/local/include/pj/compat/string.h /usr/include/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/string3.h /usr/include/stdio.h \
+ /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h \
+ /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+ /usr/local/include/pj/compat/high_precision.h /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/huge_val.h \
+ /usr/include/x86_64-linux-gnu/bits/huge_valf.h \
+ /usr/include/x86_64-linux-gnu/bits/huge_vall.h \
+ /usr/include/x86_64-linux-gnu/bits/inf.h \
+ /usr/include/x86_64-linux-gnu/bits/nan.h \
+ /usr/include/x86_64-linux-gnu/bits/mathdef.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathinline.h \
+ /usr/local/include/pj/os.h /usr/local/include/pj/pool.h \
+ /usr/local/include/pj/pool_buf.h /usr/local/include/pj/rand.h \
+ /usr/local/include/pj/rbtree.h /usr/local/include/pj/sock_qos.h \
+ /usr/local/include/pj/sock_select.h /usr/local/include/pj/ssl_sock.h \
+ /usr/local/include/pj/timer.h /usr/local/include/pj/unicode.h \
+ /usr/local/include/pjlib-util.h /usr/local/include/pjlib-util/errno.h \
+ /usr/local/include/pjlib-util/types.h \
+ /usr/local/include/pjlib-util/config.h \
+ /usr/local/include/pjlib-util/getopt.h \
+ /usr/local/include/pjlib-util/base64.h \
+ /usr/local/include/pjlib-util/crc32.h \
+ /usr/local/include/pjlib-util/hmac_md5.h \
+ /usr/local/include/pjlib-util/md5.h \
+ /usr/local/include/pjlib-util/hmac_sha1.h \
+ /usr/local/include/pjlib-util/sha1.h /usr/local/include/pjlib-util/dns.h \
+ /usr/local/include/pjlib-util/resolver.h \
+ /usr/local/include/pjlib-util/srv_resolver.h \
+ /usr/local/include/pjlib-util/dns_server.h \
+ /usr/local/include/pjlib-util/scanner.h \
+ /usr/local/include/pjlib-util/scanner_cis_bitwise.h \
+ /usr/local/include/pjlib-util/string.h \
+ /usr/local/include/pjlib-util/xml.h /usr/local/include/pjlib-util/json.h \
+ /usr/local/include/pjlib-util/stun_simple.h \
+ /usr/local/include/pjlib-util/pcap.h \
+ /usr/local/include/pjlib-util/http_client.h \
+ /usr/local/include/pjlib-util/cli.h \
+ /usr/local/include/pjlib-util/cli_console.h \
+ /usr/local/include/pjlib-util/cli_imp.h \
+ /usr/local/include/pjlib-util/cli_telnet.h ../json-c/json.h \
+ ../json-c/debug.h ../json-c/linkhash.h ../json-c/json_object.h \
+ ../json-c/json_inttypes.h ../json-c/json_config.h \
+ /usr/include/inttypes.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h ../json-c/arraylist.h \
+ ../json-c/json_util.h ../json-c/json_tokener.h \
+ ../json-c/json_object_iterator.h ../json-c/json_c_version.h \
+ ../include/global.h ../include/config.h ../include/device.h \
+ ../include/util.h ../include/mqtt_client.h \
+ /usr/local/include/MQTTAsync.h \
+ /usr/local/include/MQTTClientPersistence.h ../include/stateMachine.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdbool.h \
+ ../include/fsm_event.h /usr/include/netdb.h /usr/include/netinet/in.h \
+ /usr/include/x86_64-linux-gnu/sys/socket.h \
+ /usr/include/x86_64-linux-gnu/sys/uio.h \
+ /usr/include/x86_64-linux-gnu/bits/uio.h \
+ /usr/include/x86_64-linux-gnu/bits/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+ /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+ /usr/include/x86_64-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h \
+ /usr/include/x86_64-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/x86_64-linux-gnu/bits/socket2.h \
+ /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/rpc/netdb.h \
+ /usr/include/x86_64-linux-gnu/bits/netdb.h ../include/strval_pair.h \
+ ../ShadowVPN/src/shadowvpn.h ../ShadowVPN/src/../config.h \
+ ../ShadowVPN/src/log.h /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ ../ShadowVPN/src/crypto.h ../ShadowVPN/src/args.h \
+ ../ShadowVPN/src/daemon.h ../ShadowVPN/src/shell.h \
+ ../ShadowVPN/src/nat.h /usr/include/arpa/inet.h \
+ ../ShadowVPN/src/uthash.h ../ShadowVPN/src/vpn.h ../include/util.h \
+ ../include/mqtt_client.h ../include/mqtt_topic.h ../include/callbacks.h \
+ /usr/local/include/pjnath.h /usr/local/include/pjnath/config.h \
+ /usr/local/include/pjnath/errno.h \
+ /usr/local/include/pjnath/ice_session.h \
+ /usr/local/include/pjnath/types.h \
+ /usr/local/include/pjnath/stun_session.h \
+ /usr/local/include/pjnath/stun_msg.h \
+ /usr/local/include/pjnath/stun_auth.h \
+ /usr/local/include/pjnath/stun_config.h \
+ /usr/local/include/pjnath/stun_transaction.h \
+ /usr/local/include/pjnath/ice_strans.h \
+ /usr/local/include/pjnath/stun_sock.h \
+ /usr/local/include/pjnath/turn_sock.h \
+ /usr/local/include/pjnath/turn_session.h \
+ /usr/local/include/pjnath/nat_detect.h ../include/mqtt_callbacks.h \
+ ../include/fsm_event.h ../include/icevpn_common.h ../include/iceagent.h \
+ ../include/transport_ice.h /usr/local/include/pjmedia/sdp.h \
+ /usr/local/include/pjmedia/types.h /usr/local/include/pjmedia/config.h \
+ ../include/common_api.h ../include/initiator_api.h \
+ ../include/responder_api.h
+
+/usr/include/stdc-predef.h:
+
+/usr/local/include/pjlib.h:
+
+/usr/local/include/pj/activesock.h:
+
+/usr/local/include/pj/ioqueue.h:
+
+/usr/local/include/pj/types.h:
+
+/usr/local/include/pj/config.h:
+
+/usr/local/include/pj/compat/cc_gcc.h:
+
+/usr/local/include/pj/compat/os_linux.h:
+
+/usr/local/include/pj/compat/size_t.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h:
+
+/usr/local/include/pj/config_site.h:
+
+/usr/local/include/pj/sock.h:
+
+/usr/local/include/pj/addr_resolv.h:
+
+/usr/local/include/pj/array.h:
+
+/usr/local/include/pj/assert.h:
+
+/usr/local/include/pj/compat/assert.h:
+
+/usr/include/assert.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/local/include/pj/ctype.h:
+
+/usr/local/include/pj/compat/ctype.h:
+
+/usr/include/ctype.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
+
+/usr/include/xlocale.h:
+
+/usr/local/include/pj/errno.h:
+
+/usr/local/include/pj/compat/errno.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h:
+
+/usr/local/include/pj/except.h:
+
+/usr/local/include/pj/compat/setjmp.h:
+
+/usr/include/setjmp.h:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigset.h:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp2.h:
+
+/usr/local/include/pj/log.h:
+
+/usr/local/include/pj/fifobuf.h:
+
+/usr/local/include/pj/file_access.h:
+
+/usr/local/include/pj/file_io.h:
+
+/usr/local/include/pj/guid.h:
+
+/usr/local/include/pj/hash.h:
+
+/usr/local/include/pj/ip_helper.h:
+
+/usr/local/include/pj/list.h:
+
+/usr/local/include/pj/lock.h:
+
+/usr/local/include/pj/math.h:
+
+/usr/local/include/pj/string.h:
+
+/usr/local/include/pj/compat/string.h:
+
+/usr/include/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/string2.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/string3.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/time.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/select2.h:
+
+/usr/include/x86_64-linux-gnu/sys/sysmacros.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+/usr/local/include/pj/compat/high_precision.h:
+
+/usr/include/math.h:
+
+/usr/include/x86_64-linux-gnu/bits/huge_val.h:
+
+/usr/include/x86_64-linux-gnu/bits/huge_valf.h:
+
+/usr/include/x86_64-linux-gnu/bits/huge_vall.h:
+
+/usr/include/x86_64-linux-gnu/bits/inf.h:
+
+/usr/include/x86_64-linux-gnu/bits/nan.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathdef.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathinline.h:
+
+/usr/local/include/pj/os.h:
+
+/usr/local/include/pj/pool.h:
+
+/usr/local/include/pj/pool_buf.h:
+
+/usr/local/include/pj/rand.h:
+
+/usr/local/include/pj/rbtree.h:
+
+/usr/local/include/pj/sock_qos.h:
+
+/usr/local/include/pj/sock_select.h:
+
+/usr/local/include/pj/ssl_sock.h:
+
+/usr/local/include/pj/timer.h:
+
+/usr/local/include/pj/unicode.h:
+
+/usr/local/include/pjlib-util.h:
+
+/usr/local/include/pjlib-util/errno.h:
+
+/usr/local/include/pjlib-util/types.h:
+
+/usr/local/include/pjlib-util/config.h:
+
+/usr/local/include/pjlib-util/getopt.h:
+
+/usr/local/include/pjlib-util/base64.h:
+
+/usr/local/include/pjlib-util/crc32.h:
+
+/usr/local/include/pjlib-util/hmac_md5.h:
+
+/usr/local/include/pjlib-util/md5.h:
+
+/usr/local/include/pjlib-util/hmac_sha1.h:
+
+/usr/local/include/pjlib-util/sha1.h:
+
+/usr/local/include/pjlib-util/dns.h:
+
+/usr/local/include/pjlib-util/resolver.h:
+
+/usr/local/include/pjlib-util/srv_resolver.h:
+
+/usr/local/include/pjlib-util/dns_server.h:
+
+/usr/local/include/pjlib-util/scanner.h:
+
+/usr/local/include/pjlib-util/scanner_cis_bitwise.h:
+
+/usr/local/include/pjlib-util/string.h:
+
+/usr/local/include/pjlib-util/xml.h:
+
+/usr/local/include/pjlib-util/json.h:
+
+/usr/local/include/pjlib-util/stun_simple.h:
+
+/usr/local/include/pjlib-util/pcap.h:
+
+/usr/local/include/pjlib-util/http_client.h:
+
+/usr/local/include/pjlib-util/cli.h:
+
+/usr/local/include/pjlib-util/cli_console.h:
+
+/usr/local/include/pjlib-util/cli_imp.h:
+
+/usr/local/include/pjlib-util/cli_telnet.h:
+
+../json-c/json.h:
+
+../json-c/debug.h:
+
+../json-c/linkhash.h:
+
+../json-c/json_object.h:
+
+../json-c/json_inttypes.h:
+
+../json-c/json_config.h:
+
+/usr/include/inttypes.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+../json-c/arraylist.h:
+
+../json-c/json_util.h:
+
+../json-c/json_tokener.h:
+
+../json-c/json_object_iterator.h:
+
+../json-c/json_c_version.h:
+
+../include/global.h:
+
+../include/config.h:
+
+../include/device.h:
+
+../include/util.h:
+
+../include/mqtt_client.h:
+
+/usr/local/include/MQTTAsync.h:
+
+/usr/local/include/MQTTClientPersistence.h:
+
+../include/stateMachine.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdbool.h:
+
+../include/fsm_event.h:
+
+/usr/include/netdb.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/x86_64-linux-gnu/sys/socket.h:
+
+/usr/include/x86_64-linux-gnu/sys/uio.h:
+
+/usr/include/x86_64-linux-gnu/bits/uio.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+
+/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+
+/usr/include/x86_64-linux-gnu/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/x86_64-linux-gnu/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket2.h:
+
+/usr/include/x86_64-linux-gnu/bits/in.h:
+
+/usr/include/rpc/netdb.h:
+
+/usr/include/x86_64-linux-gnu/bits/netdb.h:
+
+../include/strval_pair.h:
+
+../ShadowVPN/src/shadowvpn.h:
+
+../ShadowVPN/src/../config.h:
+
+../ShadowVPN/src/log.h:
+
+/usr/include/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+../ShadowVPN/src/crypto.h:
+
+../ShadowVPN/src/args.h:
+
+../ShadowVPN/src/daemon.h:
+
+../ShadowVPN/src/shell.h:
+
+../ShadowVPN/src/nat.h:
+
+/usr/include/arpa/inet.h:
+
+../ShadowVPN/src/uthash.h:
+
+../ShadowVPN/src/vpn.h:
+
+../include/util.h:
+
+../include/mqtt_client.h:
+
+../include/mqtt_topic.h:
+
+../include/callbacks.h:
+
+/usr/local/include/pjnath.h:
+
+/usr/local/include/pjnath/config.h:
+
+/usr/local/include/pjnath/errno.h:
+
+/usr/local/include/pjnath/ice_session.h:
+
+/usr/local/include/pjnath/types.h:
+
+/usr/local/include/pjnath/stun_session.h:
+
+/usr/local/include/pjnath/stun_msg.h:
+
+/usr/local/include/pjnath/stun_auth.h:
+
+/usr/local/include/pjnath/stun_config.h:
+
+/usr/local/include/pjnath/stun_transaction.h:
+
+/usr/local/include/pjnath/ice_strans.h:
+
+/usr/local/include/pjnath/stun_sock.h:
+
+/usr/local/include/pjnath/turn_sock.h:
+
+/usr/local/include/pjnath/turn_session.h:
+
+/usr/local/include/pjnath/nat_detect.h:
+
+../include/mqtt_callbacks.h:
+
+../include/fsm_event.h:
+
+../include/icevpn_common.h:
+
+../include/iceagent.h:
+
+../include/transport_ice.h:
+
+/usr/local/include/pjmedia/sdp.h:
+
+/usr/local/include/pjmedia/types.h:
+
+/usr/local/include/pjmedia/config.h:
+
+../include/common_api.h:
+
+../include/initiator_api.h:
+
+../include/responder_api.h:
