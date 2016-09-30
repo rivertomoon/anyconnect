@@ -1,0 +1,9 @@
+[submodule "json-c"]
+	path = json-c
+	url = https://github.com/json-c/json-c
+[submodule "paho.mqtt.c"]
+	path = paho.mqtt.c
+	url = https://github.com/eclipse/paho.mqtt.c
+[submodule "pjproject"]
+	path = pjproject
+	url = https://github.com/pjsip/pjproject
