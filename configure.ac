@@ -54,6 +54,24 @@ AC_TYPE_SSIZE_T
 AC_TYPE_UINT16_T
 
 # Checks for library functions.
+PKG_CHECK_MODULES(
+	[OPENSSL],
+	[libcrypto >= 0.9.8],
+	,
+	[PKG_CHECK_MODULES(
+		[OPENSSL],
+		[openssl >= 0.9.8],
+		,
+		[AC_CHECK_LIB(
+			[crypto],
+			[RSA_verify],
+			[OPENSSL_LIBS="-lcrypto ${SOCKETS_LIBS} ${DL_LIBS}"],
+			[AC_MSG_ERROR([OpenSSL 0.9.8 or later is required. http://www.openssl.org/])],
+			[${DL_LIBS}]
+		)]
+	)]
+)
+
 # To fix rpl_malloc undefined error in mips cross-compile enviroment.
 AC_CHECK_FUNCS([malloc realloc])
 AC_CHECK_FUNCS([inet_ntoa memset select socket strchr strdup strrchr])
@@ -81,7 +99,6 @@ AM_CONDITIONAL(STATIC, test x"$static" = x"true")
 
 AC_CONFIG_FILES([Makefile src/Makefile])
 AC_CONFIG_SUBDIRS([json-c])
-AC_CONFIG_SUBDIRS([paho.mqtt.c])
 AC_CONFIG_SUBDIRS([pjproject])
 AC_CONFIG_SUBDIRS([ShadowVPN])
 AC_OUTPUT

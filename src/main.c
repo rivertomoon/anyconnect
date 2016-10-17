@@ -109,13 +109,13 @@ int parse_args(int argc, char** argv) {
 
 }
 
-static void
+/* static void
 quit(EV_P_ ev_signal *w, int revents)
 {
 	pj_shutdown();
   MQTTAsync_destroy(&client);
 
-}
+} */
 
 int main(int argc, char* argv[])
 {

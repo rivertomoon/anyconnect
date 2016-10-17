@@ -61,8 +61,7 @@ bool cmd_ev_handler(void * r, struct event *event) {
 		INFO("Handle CMD EVENT: %s", g_cmd_ev_strval_pair_array[ev_idx].str.ptr);
 		json_object_put(lvl1_obj);
 		return *(int *)r == ev_idx;
-  }
-  else {
+  } else {
 
     WARN("Invalid CMD Event ( No Name Field in Json )");
     return false;
@@ -206,7 +205,7 @@ void action_subscribe_topics( void *currentStateData, struct event *event,
   // full_topic.ptr = full_topic_buf;
   // full_topic.slen = 0;
 
-	// pj_strcat2(&full_topic, "message/");
+// pj_strcat2(&full_topic, "message/");
   //pj_strcat(&full_topic, &(mqtt_ctx.uuid));
   pj_bzero(full_topic_buf, sizeof(full_topic_buf));
   pj_ansi_snprintf(full_topic_buf, 1024, "message/%s", (char *)pj_strbuf(&mqtt_ctx.uuid));
@@ -223,7 +222,6 @@ void action_subscribe_topics( void *currentStateData, struct event *event,
   {
     app_perror("Failed to start subscribe, return code %d\n", rc);
   }
-
 }
 
 PJ_DEF(pj_status_t) send_to_peer(icevpn_ctx_t *ctx, char *peer_id, char * body_msg)

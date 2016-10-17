@@ -79,7 +79,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-unknown-linux-gnu
 host_triplet = x86_64-unknown-linux-gnu
-noinst_PROGRAMS = anyconnect$(EXEEXT)
+bin_PROGRAMS = anyconnect$(EXEEXT)
 #am__append_1 = win32.c win32.h
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
@@ -115,7 +115,8 @@ libanyconnect_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(AM_CFLAGS) $(CFLAGS) $(libanyconnect_la_LDFLAGS) $(LDFLAGS) \
 	-o $@
-PROGRAMS = $(noinst_PROGRAMS)
+am__installdirs = "$(DESTDIR)$(bindir)"
+PROGRAMS = $(bin_PROGRAMS)
 am_anyconnect_OBJECTS = main.$(OBJEXT)
 anyconnect_OBJECTS = $(am_anyconnect_OBJECTS)
 anyconnect_DEPENDENCIES = libanyconnect.la
@@ -181,13 +182,13 @@ am__define_uniq_tagged_files = \
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/wildc/Development/AnyConnect/missing aclocal-1.14
+ACLOCAL = ${SHELL} /home/wildc/Development/anyconnect/missing aclocal-1.14
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home/wildc/Development/AnyConnect/missing autoconf
-AUTOHEADER = ${SHELL} /home/wildc/Development/AnyConnect/missing autoheader
-AUTOMAKE = ${SHELL} /home/wildc/Development/AnyConnect/missing automake-1.14
+AUTOCONF = ${SHELL} /home/wildc/Development/anyconnect/missing autoconf
+AUTOHEADER = ${SHELL} /home/wildc/Development/anyconnect/missing autoheader
+AUTOMAKE = ${SHELL} /home/wildc/Development/anyconnect/missing automake-1.14
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -224,7 +225,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/wildc/Development/AnyConnect/missing makeinfo
+MAKEINFO = ${SHELL} /home/wildc/Development/anyconnect/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -244,13 +245,13 @@ PATH_SEPARATOR = :
 RANLIB = ranlib
 SED = /bin/sed
 SET_MAKE = 
-SHELL = /bin/bash
+SHELL = /bin/sh
 STRIP = strip
 VERSION = 0.2.0
-abs_builddir = /home/wildc/Development/AnyConnect/src
-abs_srcdir = /home/wildc/Development/AnyConnect/src
-abs_top_builddir = /home/wildc/Development/AnyConnect
-abs_top_srcdir = /home/wildc/Development/AnyConnect
+abs_builddir = /home/wildc/Development/anyconnect/src
+abs_srcdir = /home/wildc/Development/anyconnect/src
+abs_top_builddir = /home/wildc/Development/anyconnect
+abs_top_srcdir = /home/wildc/Development/anyconnect
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
@@ -280,7 +281,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/wildc/Development/AnyConnect/install-sh
+install_sh = ${SHELL} /home/wildc/Development/anyconnect/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -295,14 +296,21 @@ psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
-subdirs =  json-c pjproject-2.5.5 ShadowVPN
+subdirs =  json-c paho.mqtt.c pjproject ShadowVPN
 sysconfdir = ${prefix}/etc
 target_alias = 
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 noinst_LTLIBRARIES = libanyconnect.la
-AM_CFLAGS = -I$(srcdir)/../include -I$(srcdir)/../ShadowVPN/src
+AM_CFLAGS = -I$(srcdir)/../include \
+-I$(srcdir)/../paho.mqtt.c/src/ \
+-I$(srcdir)/../pjproject/pjlib/include/ \
+-I$(srcdir)/../pjproject/pjlib-util/include/ \
+-I$(srcdir)/../pjproject/pjmedia/include/ \
+-I$(srcdir)/../pjproject/pjnath/include/ \
+-I$(srcdir)/../ShadowVPN/src/
+
 libanyconnect_la_SOURCES = callbacks.c fsm_event.c iceagent.c \
 	icevpn_common.c initiator_api.c mqtt_topic.c msg_encode.c \
 	responder_api.c transport_ice.c common_api.c global.c \
@@ -312,10 +320,10 @@ libanyconnect_la_LIBADD = ../json-c/.libs/libjson-c.la \
 ../ShadowVPN/src/.libs/libshadowvpn.la 
 
 libanyconnect_la_LDFLAGS = -L../paho.mqtt.c/build/output/ \
-	-lpaho-mqtt3as -L../pjproject-2.5.5/pjlib/lib/ -lpj \
-	-L../pjproject-2.5.5/pjlib-util/lib/ -lpjlib-util \
-	-L../pjproject-2.5.5/pjmedia/lib/ -lpjsdp \
-	-L../pjproject-2.5.5/pjnath/lib/ -lpjnath
+	-lpaho-mqtt3as -L../pjproject/pjnath/lib/ -lpjnath-$(host) \
+	-L../pjproject/pjmedia/lib/ -lpjsdp-$(host) \
+	-L../pjproject/pjlib-util/lib/ -lpjlib-util-$(host) \
+	-L../pjproject/pjlib/lib/ -lpj-$(host) -lm -lpthread
 anyconnect_SOURCES = main.c
 anyconnect_LDADD = libanyconnect.la
 all: all-am
@@ -366,9 +374,49 @@ clean-noinstLTLIBRARIES:
 
 libanyconnect.la: $(libanyconnect_la_OBJECTS) $(libanyconnect_la_DEPENDENCIES) $(EXTRA_libanyconnect_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libanyconnect_la_LINK)  $(libanyconnect_la_OBJECTS) $(libanyconnect_la_LIBADD) $(LIBS)
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(bindir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(bindir)" || exit 1; \
+	fi; \
+	for p in $$list; do echo "$$p $$p"; done | \
+	sed 's/$(EXEEXT)$$//' | \
+	while read p p1; do if test -f $$p \
+	 || test -f $$p1 \
+	  ; then echo "$$p"; echo "$$p"; else :; fi; \
+	done | \
+	sed -e 'p;s,.*/,,;n;h' \
+	    -e 's|.*|.|' \
+	    -e 'p;x;s,.*/,,;s/$(EXEEXT)$$//;$(transform);s/$$/$(EXEEXT)/' | \
+	sed 'N;N;N;s,\n, ,g' | \
+	$(AWK) 'BEGIN { files["."] = ""; dirs["."] = 1 } \
+	  { d=$$3; if (dirs[d] != 1) { print "d", d; dirs[d] = 1 } \
+	    if ($$2 == $$4) files[d] = files[d] " " $$1; \
+	    else { print "f", $$3 "/" $$4, $$1; } } \
+	  END { for (d in files) print "f", d, files[d] }' | \
+	while read type dir files; do \
+	    if test "$$dir" = .; then dir=; else dir=/$$dir; fi; \
+	    test -z "$$files" || { \
+	    echo " $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files '$(DESTDIR)$(bindir)$$dir'"; \
+	    $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(bindir)$$dir" || exit $$?; \
+	    } \
+	; done
 
-clean-noinstPROGRAMS:
-	@list='$(noinst_PROGRAMS)'; test -n "$$list" || exit 0; \
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+	files=`for p in $$list; do echo "$$p"; done | \
+	  sed -e 'h;s,^.*/,,;s/$(EXEEXT)$$//;$(transform)' \
+	      -e 's/$$/$(EXEEXT)/' \
+	`; \
+	test -n "$$list" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(bindir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(bindir)" && rm -f $$files
+
+clean-binPROGRAMS:
+	@list='$(bin_PROGRAMS)'; test -n "$$list" || exit 0; \
 	echo " rm -f" $$list; \
 	rm -f $$list || exit $$?; \
 	test -n "$(EXEEXT)" || exit 0; \
@@ -523,6 +571,9 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(PROGRAMS)
 installdirs:
+	for dir in "$(DESTDIR)$(bindir)"; do \
+	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+	done
 install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
@@ -555,8 +606,8 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-noinstLTLIBRARIES \
-	clean-noinstPROGRAMS mostlyclean-am
+clean-am: clean-binPROGRAMS clean-generic clean-libtool \
+	clean-noinstLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -582,7 +633,7 @@ install-dvi: install-dvi-am
 
 install-dvi-am:
 
-install-exec-am:
+install-exec-am: install-binPROGRAMS
 
 install-html: install-html-am
 
@@ -622,23 +673,24 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am:
+uninstall-am: uninstall-binPROGRAMS
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS TAGS all all-am check check-am clean clean-generic \
-	clean-libtool clean-noinstLTLIBRARIES clean-noinstPROGRAMS \
-	cscopelist-am ctags ctags-am distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
+.PHONY: CTAGS GTAGS TAGS all all-am check check-am clean \
+	clean-binPROGRAMS clean-generic clean-libtool \
+	clean-noinstLTLIBRARIES cscopelist-am ctags ctags-am distclean \
+	distclean-compile distclean-generic distclean-libtool \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-binPROGRAMS install-data \
+	install-data-am install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am install-info \
+	install-info-am install-man install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags tags-am uninstall uninstall-am
+	tags tags-am uninstall uninstall-am uninstall-binPROGRAMS
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
