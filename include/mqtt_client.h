@@ -1,7 +1,10 @@
 #ifndef MQTT_CLIENT_H
 #define MQTT_CLIENT_H
 
-#include "MQTTAsync.h"
+#ifndef HAVE_ANDROID_LOG
+	#include "MQTTAsync.h"
+#endif 
+
 #include "stateMachine.h"
 #include "fsm_event.h"
 
@@ -12,7 +15,9 @@ typedef struct peer_ctx {
 
 typedef struct icevpn_ctx {
 	// MQTTConnectParams connectParams;
+#ifndef HAVE_ANDROID_LOG
 	MQTTAsync mqtt_ctx;
+#endif
 
 	struct stateMachine m;
 	event_queue_t event_queue;

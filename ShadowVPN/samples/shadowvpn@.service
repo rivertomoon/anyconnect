@@ -1,0 +1,10 @@
+[Unit]
+Description=Shadowvpn Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/shadowvpn -c /etc/shadowvpn/%i.conf -s start
+
+[Install]
+WantedBy=multi-user.target

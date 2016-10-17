@@ -1,0 +1,38 @@
+{
+	"generic": {
+		"log_level"  : 2,
+		"event_port" : 8002,
+		"log_file"   : "icevpn.log",
+	},
+	"crypto": {
+		"password" : "my_password",
+	},
+	"device": {
+		"name"  : "Test Client",
+		"registered" : "true",
+		"uuid"  : "client",
+		"token" : "test"
+	},
+	"ice" : {
+		"mode" : "controlling",
+	}, 
+	"mqtt": {
+		"srv_host" : "123.57.56.216",
+		"srv_port" : 1883
+	},
+	"stun": {
+		"srv_host"  : "123.57.56.216",
+		"srv_port"  : 3478
+	},
+	"turn": {
+		"srv_host"  : "123.57.56.216",
+		"srv_port"  : 3478,
+		"use_tcp"   : "true",
+		"username"	: "wildc",
+		"password"	: "wildc2016",
+		"fingerprint"	: "",
+	},
+	"vpn": {
+		"config_file" : "conf/client.conf",
+	}
+}

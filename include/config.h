@@ -20,7 +20,7 @@ typedef struct MQTTConfig {
 }MQTTConfig_t;
 
 typedef struct ICEConfig {
-  pj_uint8_t mode;
+	pj_uint8_t mode;
 }ICEConfig_t;
 
 typedef struct STUNConfig {
@@ -37,7 +37,7 @@ typedef struct TURNConfig {
 }TURNConfig_t;
 
 typedef struct VPNConfig {
-  const char *config_file;
+	const char *config_file;
 }VPNConfig_t;
 
 typedef struct CONFIG {

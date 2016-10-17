@@ -305,7 +305,7 @@ static void reset_rem_info(void)
 void iceagent_destroy_instance(void)
 {
   if (iceagent.icest == NULL) {
-    puts("Error: No ICE instance, create it first");
+    ERROR_LOG("Error: No ICE instance, create it first");
     return;
   }
 
@@ -454,7 +454,6 @@ int encode_session(char buffer[], unsigned maxlen)
 
     /* Enumerate all candidates for this component */
     cand_cnt = PJ_ARRAY_SIZE(cand);
-		PJ_LOG(3, (THIS_FILE,"Encode Message Candidate CNT %d", cand_cnt));
     status = pj_ice_strans_enum_cands(iceagent.icest, comp+1,
                                       &cand_cnt, cand);
     if (status != PJ_SUCCESS)
@@ -548,32 +547,32 @@ ssize_t iceagent_send_data(unsigned comp_id, const void *pkt, ssize_t size)
     pj_status_t status;
 
     if (iceagent.icest == NULL) {
-			ERROR_LOG("Error: No ICE instance, create it first");
-			return;
+		ERROR_LOG("Error: No ICE instance, create it first");
+		return;
     }
 
     if (!pj_ice_strans_has_sess(iceagent.icest)) {
-			ERROR_LOG("Error: No ICE session, initialize first");
-			return;
+		ERROR_LOG("Error: No ICE session, initialize first");
+		return;
     }
 
     if (!pj_ice_strans_sess_is_complete(iceagent.icest)) {
-			ERROR_LOG("Error: ICE negotiation has not been started or is in progress");
-			return;
+		ERROR_LOG("Error: ICE negotiation has not been started or is in progress");
+		return;
     }
 
     if (comp_id<1||comp_id>pj_ice_strans_get_running_comp_cnt(iceagent.icest)) {
-			ERROR_LOG("Error: invalid component ID");
-			return;
+		ERROR_LOG("Error: invalid component ID");
+		return;
     }
 
-		status = pj_ice_strans_sendto(iceagent.icest, comp_id, pkt, size,
-			&iceagent.rem.def_addr[comp_id-1],
-			pj_sockaddr_get_len(&iceagent.rem.def_addr[comp_id-1]));
+	status = pj_ice_strans_sendto(iceagent.icest, comp_id, pkt, size,
+		&iceagent.rem.def_addr[comp_id-1],
+		pj_sockaddr_get_len(&iceagent.rem.def_addr[comp_id-1]));
 
-		if (status != PJ_SUCCESS)
-			iceagent_perror("Error sending data", status);
-		else
-			DEBUG("Data sent");
-			return size;
+	if (status != PJ_SUCCESS)
+ 		iceagent_perror("Error sending data", status);
+	else
+		DEBUG("Data sent");
+		return size;
 }

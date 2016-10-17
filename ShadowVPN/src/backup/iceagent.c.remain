@@ -1,0 +1,118 @@
+/* $Id: iceagent.c 4624 2013-10-21 06:37:30Z ming $ */
+/*
+ * Copyright (C) 2008-2011 Teluu Inc. (http://www.teluu.com)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+#include <sys/types.h>
+#include <pjlib.h>
+#include <pjlib-util.h>
+#include <pjnath.h>
+#include "shadowvpn.h"
+#include "iceagent.h"
+
+#define THIS_FILE   "iceagent.c"
+
+/* This is our global variables */
+struct app_t iceagent;
+
+/* Utility to display error messages */
+static void iceagent_perror(const char *title, pj_status_t status)
+{
+	char errmsg[PJ_ERR_MSG_SIZE];
+
+	pj_strerror(status, errmsg, sizeof(errmsg));
+	PJ_LOG(1,(THIS_FILE, "%s: %s", title, errmsg));
+}
+
+
+/*
+ * Send application data to remote agent.
+ */
+ssize_t iceagent_send_data(unsigned comp_id, const void *pkt, ssize_t size)
+{
+	pj_status_t status;
+
+	if (iceagent.icest == NULL) {
+		PJ_LOG(1,(THIS_FILE, "Error: No ICE instance, create it first"));
+		return;
+	}
+
+	if (!pj_ice_strans_has_sess(iceagent.icest)) {
+		PJ_LOG(1,(THIS_FILE, "Error: No ICE session, initialize first"));
+		return;
+	}
+
+    /*
+    if (!pj_ice_strans_sess_is_complete(iceagent.icest)) {
+      PJ_LOG(1,(THIS_FILE, "Error: ICE negotiation has not been started or is in progress"));
+      return;
+    }
+    */
+
+    if (comp_id<1||comp_id>pj_ice_strans_get_running_comp_cnt(iceagent.icest)) {
+      PJ_LOG(1,(THIS_FILE, "Error: invalid component ID"));
+      return;
+    }
+
+    status = pj_ice_strans_sendto(iceagent.icest, comp_id, pkt, size,
+      &iceagent.rem.def_addr[comp_id-1],
+      pj_sockaddr_get_len(&iceagent.rem.def_addr[comp_id-1]));
+
+    if (status != PJ_SUCCESS)
+      iceagent_perror("Error sending data", status);
+    else
+      PJ_LOG(3,(THIS_FILE, "Data sent"));
+      return size;
+}
+
+
+/*
+ * This is the callback that is registered to the ICE stream transport to
+ * receive notification about incoming data. By "data" it means application
+ * data such as RTP/RTCP, and not packets that belong to ICE signaling (such
+ * as STUN connectivity checks or TURN signaling).
+ */
+static void cb_on_rx_data(pj_ice_strans *ice_st,
+			  unsigned comp_id,
+			  void *pkt, pj_size_t size,
+			  const pj_sockaddr_t *src_addr,
+			  unsigned src_addr_len)
+{
+	char ipstr[PJ_INET6_ADDRSTRLEN+10];
+
+	PJ_UNUSED_ARG(ice_st);
+	PJ_UNUSED_ARG(src_addr_len);
+
+  // Don't do this! It will ruin the packet buffer in case TCP is used!
+  //((char*)pkt)[size] = '\0';
+
+	PJ_LOG(3,(THIS_FILE, "Component %d: received %d bytes data from %s: \"%.*s\"",
+	      comp_id, size,
+	      pj_sockaddr_print(src_addr, ipstr, sizeof(ipstr), 3),
+	      (unsigned)size,
+	      (char*)pkt));
+
+	if (-1 == tun_write(iceagent.ctx->tun, (char *)pkt, (unsigned)size) ) {
+		if (errno == EAGAIN || errno == EWOULDBLOCK) {
+			// do nothing
+		} else if (errno == EPERM || errno == EINTR || errno == EINVAL) {
+			// just log, do nothing
+			err("write to tun");
+		} else {
+			err("write to tun");
+		}
+	}
+}

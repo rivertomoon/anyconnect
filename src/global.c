@@ -16,7 +16,6 @@ CommonUtil_t util;
 icevpn_ctx_t mqtt_ctx;
 
 shadowvpn_args_t args;
-
 vpn_ctx_t vpn_ctx;
 
 struct global g;
