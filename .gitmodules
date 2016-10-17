@@ -7,3 +7,6 @@
 [submodule "pjproject"]
 	path = pjproject
 	url = https://github.com/pjsip/pjproject
+[submodule "ShadowVPN/libsodium"]
+	path = ShadowVPN/libsodium
+	url = https://github.com/jedisct1/libsodium.git
